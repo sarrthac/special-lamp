@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "useraaaaaaaaaaaaa")
+public class Useraaaaaaaaaaaa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +27,4 @@ public class User {
 
     @Column(name = "email_id", nullable = false, unique = true)
     private String email;
-
 }

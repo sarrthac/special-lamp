@@ -1,10 +1,10 @@
 package com.fireshadow01.springboot_backend.service.impl;
 
 import com.fireshadow01.springboot_backend.dto.UserDto;
-import com.fireshadow01.springboot_backend.entity.User;
+import com.fireshadow01.springboot_backend.entity.Useraaaaaaaaaaaa;
 import com.fireshadow01.springboot_backend.exceptions.ResourceNotFoundException;
 import com.fireshadow01.springboot_backend.mapper.UserMapper;
-import com.fireshadow01.springboot_backend.repository.UserRepository;
+import com.fireshadow01.springboot_backend.repository.UseraaaaaaaaaaaaRepository;
 import com.fireshadow01.springboot_backend.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,39 +17,39 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private UseraaaaaaaaaaaaRepository useraaaaaaaaaaaaRepository;
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        User user = UserMapper.mapToUser(userDto);
-        User savedUser = userRepository.save(user);
-        return UserMapper.mapToUserDto(savedUser);
+        Useraaaaaaaaaaaa useraaaaaaaaaaaa = UserMapper.mapToUser(userDto);
+        Useraaaaaaaaaaaa savedUseraaaaaaaaaaaa = useraaaaaaaaaaaaRepository.save(useraaaaaaaaaaaa);
+        return UserMapper.mapToUserDto(savedUseraaaaaaaaaaaa);
     }
 
     @Override
     public UserDto getUserById(Long userId) {
-       User user = userRepository.findById(userId)
+       Useraaaaaaaaaaaa useraaaaaaaaaaaa = useraaaaaaaaaaaaRepository.findById(userId)
                 .orElseThrow(()-> new ResourceNotFoundException("User does not exist with the given Id :  "+ userId));
-        return UserMapper.mapToUserDto(user);
+        return UserMapper.mapToUserDto(useraaaaaaaaaaaa);
     }
 
     @Override
     public List<UserDto> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map((user) -> UserMapper.mapToUserDto(user))
+        List<Useraaaaaaaaaaaa> useraaaaaaaaaaaas = useraaaaaaaaaaaaRepository.findAll();
+        return useraaaaaaaaaaaas.stream().map((useraaaaaaaaaaaa) -> UserMapper.mapToUserDto(useraaaaaaaaaaaa))
                 .collect(Collectors.toList());
     }
 
     @Override
     public UserDto updateUser(Long userId, UserDto updatedUser) {
-        User user = userRepository.findById(userId)
+        Useraaaaaaaaaaaa useraaaaaaaaaaaa = useraaaaaaaaaaaaRepository.findById(userId)
                 .orElseThrow(()-> new ResourceNotFoundException("User does not exist with the given Id :  "+ userId));
 
-        user.setFirstName(updatedUser.getFirstName());
-        user.setLastName(updatedUser.getLastName());
-        user.setEmail(updatedUser.getEmail());
+        useraaaaaaaaaaaa.setFirstName(updatedUser.getFirstName());
+        useraaaaaaaaaaaa.setLastName(updatedUser.getLastName());
+        useraaaaaaaaaaaa.setEmail(updatedUser.getEmail());
 
-        User updatedUserObj = userRepository.save(user);
-        return UserMapper.mapToUserDto(updatedUserObj);
+        Useraaaaaaaaaaaa updatedUseraaaaaaaaaaaaObj = useraaaaaaaaaaaaRepository.save(useraaaaaaaaaaaa);
+        return UserMapper.mapToUserDto(updatedUseraaaaaaaaaaaaObj);
     }
 }

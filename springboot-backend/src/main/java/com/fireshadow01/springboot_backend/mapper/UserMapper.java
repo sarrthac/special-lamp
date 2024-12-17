@@ -1,24 +1,24 @@
 package com.fireshadow01.springboot_backend.mapper;
 
 import com.fireshadow01.springboot_backend.dto.UserDto;
-import com.fireshadow01.springboot_backend.entity.User;
+import com.fireshadow01.springboot_backend.entity.Useraaaaaaaaaaaa;
 
 public class UserMapper {
 
-    public static UserDto mapToUserDto(User user)
+    public static UserDto mapToUserDto(Useraaaaaaaaaaaa useraaaaaaaaaaaa)
     {
         return new UserDto(
-                user.getId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail()
+                useraaaaaaaaaaaa.getId(),
+                useraaaaaaaaaaaa.getFirstName(),
+                useraaaaaaaaaaaa.getLastName(),
+                useraaaaaaaaaaaa.getEmail()
         );
     }
 
 
-    public static User mapToUser(UserDto userDto)
+    public static Useraaaaaaaaaaaa mapToUser(UserDto userDto)
     {
-        return new User(
+        return new Useraaaaaaaaaaaa(
                 userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
