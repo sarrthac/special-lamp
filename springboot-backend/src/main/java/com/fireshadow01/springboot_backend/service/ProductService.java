@@ -25,19 +25,27 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public ProductResponseDTO createProduct(ProductRequestDTO requestDTO) {
-
         Optional<Product> existingProduct = productRepository.findByName(requestDTO.getName());
-        if (existingProduct.isPresent()) {
+        Product product;
+        if (existingProduct.isPresent() && "Inactive".equals(existingProduct.get().getStatus())) {
+            product = existingProduct.get();
+            // Update all fields from requestDTO except ID and timestamps
+            BeanUtils.copyProperties(requestDTO, product, "id", "createdAt");
+            product.setStatus("Active");
+            product.setUpdatedAt(LocalDateTime.now());
+        } else if (existingProduct.isPresent()) {
             throw new ProductAlreadyExistsException("Product with the same name already exists.");
+        } else {
+            product = new Product();
+            BeanUtils.copyProperties(requestDTO, product);
+            product.setStatus("Active");
+            product.setCreatedAt(LocalDateTime.now());
+            product.setUpdatedAt(LocalDateTime.now());
         }
-
-        Product product = new Product();
-        BeanUtils.copyProperties(requestDTO, product);
-        product.setCreatedAt(LocalDateTime.now());
-        product.setUpdatedAt(LocalDateTime.now());
         Product savedProduct = productRepository.save(product);
         return mapToResponseDTO(savedProduct);
     }
+
 
     public Page<ProductResponseDTO> getAllProducts(String status, String category, Boolean favourite, Pageable pageable) {
         Specification<Product> spec = Specification.where(ProductSpecification.hasStatus(status))
